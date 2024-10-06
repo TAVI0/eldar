@@ -93,7 +93,7 @@ public class Features {
         double amount=0;
         if(card != null){
             brand = card.getBrand();
-            amount = card.operationRate(oper.getDate());
+            amount = operationService.operationRate(oper.getId());
             System.out.println("\nBrand: "+brand+"\namount: "+amount+"%");
             System.out.println("OperRateStr: "+card.getOperRateStr()+"\ndate: "+oper.getDate());
         }

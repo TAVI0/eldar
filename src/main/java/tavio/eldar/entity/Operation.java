@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class Operation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private Long cardId;
     private Double value;
     private LocalDate date;

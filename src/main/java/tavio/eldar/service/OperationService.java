@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface OperationService {
     List<Operation> getAll();
     Operation getById(Long id);
+
+    double operationRate(Long id);
 }

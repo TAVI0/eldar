@@ -1,0 +1,35 @@
+version: "3.8"
+networks:
+  app-network:
+    driver: bridge
+
+services:
+  app:
+    container_name: "eldarAPI"
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresdb:5432/eldarbd
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+    depends_on:
+      - postgres_db
+    networks:
+      - app-network
+
+  postgres_db:
+    container_name: "postgresdb"
+    image: "postgres"
+    ports:
+      - "5431:5432"
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "eldarbd"
+    networks:
+      - app-network
+
+
+volumes:
+  postgres-data:
