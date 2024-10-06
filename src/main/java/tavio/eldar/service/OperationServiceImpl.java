@@ -5,6 +5,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
+import tavio.eldar.entity.Brand;
 import tavio.eldar.entity.Card;
 import tavio.eldar.entity.Operation;
 import tavio.eldar.repository.OperationRepository;
@@ -32,18 +33,14 @@ public class OperationServiceImpl implements OperationService{
         return operationRepository.getById(id);
     }
 
-    public double operationRate(Long id){
-        Operation operation = getById(id);
-        Card card =  cardService.getById(operation.getCardId());
-        LocalDate date = operation.getDate();
-//        LocalDate date = card.getExpDate();
-        double rateValueD = card.getRateValue().doubleValue();
+    public double operationRate(LocalDate date, Brand brand){
+        double rateValueD = brand.getMultiValue().doubleValue();
         double value;
         double num = 0;
         double num2 = 0;
         String oper ="";
-        for(int i = 0; i < card.getOperRateStr().length(); i++){
-            char character = card.getOperRateStr().charAt(i);
+        for(int i = 0; i < brand.getOperRateStr().length(); i++){
+            char character = brand.getOperRateStr().charAt(i);
             switch (character){
                 case 'y':
                     if(num == 0) {

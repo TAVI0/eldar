@@ -1,6 +1,7 @@
 package tavio.eldar.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -10,31 +11,27 @@ import java.time.LocalDate;
 @Data
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
-@Table(name="card")
 public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String brand;
     private String number;
     private String cardholder;
     @Column
     private LocalDate expDate;
-    @Column(precision = 10, scale = 2)
-    private BigDecimal rateValue;
-    private String operRateStr;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "brand_id")
+    @JsonManagedReference
+    private Brand brand;
 
     public Card(){
 
     }
-    public Card(Long id, String brand, String number, String cardholder, LocalDate expDate, BigDecimal rateValue, String operRateStr) {
+    public Card(Long id, String number, String cardholder, LocalDate expDate) {
         this.id = id;
-        this.brand = brand;
         this.number = number;
         this.cardholder = cardholder;
         this.expDate = expDate;
-        this.rateValue = rateValue;
-        this.operRateStr = operRateStr;
     }
 
 }

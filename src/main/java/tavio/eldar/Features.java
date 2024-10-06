@@ -92,10 +92,10 @@ public class Features {
         String brand= "";
         double amount=0;
         if(card != null){
-            brand = card.getBrand();
-            amount = operationService.operationRate(oper.getId());
+            brand = card.getBrand().getName();
+            amount = operationService.operationRate(oper.getDate(),cardService.getById(oper.getCardId()).getBrand());
             System.out.println("\nBrand: "+brand+"\namount: "+amount+"%");
-            System.out.println("OperRateStr: "+card.getOperRateStr()+"\ndate: "+oper.getDate());
+           // System.out.println("OperRateStr: "+card.getBrand().getOperRateStr()+"\ndate: "+oper.getDate());
         }
     }
 
