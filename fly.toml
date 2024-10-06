@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for tavio-eldar on 2024-10-05T22:12:44-03:00
+# fly.toml app configuration file generated for tavio-eldar on 2024-10-06T06:32:26-03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -9,18 +9,15 @@ primary_region = 'scl'
 [build]
 
 [http_service]
-#  internal_port = 8081
-  internal_port = 8_080
-  external_port = 80
-
+  internal_port = 8080
   force_https = true
   auto_stop_machines = 'stop'
   auto_start_machines = true
   min_machines_running = 0
   processes = ['app']
 
+
 [[vm]]
   memory = '1gb'
   cpu_kind = 'shared'
   cpus = 1
-

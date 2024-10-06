@@ -22,16 +22,16 @@ public class AppController {
     @Autowired
     private BrandService brandService;
 
-   /* @GetMapping("/card/all")
+    @GetMapping("/card/all")
     public List<Card> getAll(){
         return cardService.getAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/card/{id}")
     public Card getById(@PathVariable("id") Long id){
         return cardService.getById(id);
     }
-*/
+
     @GetMapping("/rate")
     public double getOperationRate(@RequestParam("brand") String cardBrand, @RequestParam("amount") double amount){
         double operRate = operationService.operationRate(LocalDate.now(), brandService.getByName(cardBrand));
